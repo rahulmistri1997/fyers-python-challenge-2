@@ -25,7 +25,6 @@ def csvopen(filename):
     unique_air = {} # Initializing a dict for storing the unique airport names
 
     with open(filename, mode='r') as csv_file:
-        # csv_reader = csv.DictReader(csv_file)
         line_count = 0
         for row in csv_file:
             words = row.split(",") # Splitting every line in the CSV
