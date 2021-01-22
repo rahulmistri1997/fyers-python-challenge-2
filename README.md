@@ -1,6 +1,9 @@
 # Fyers Python Challenge - 2 - Skillenza
 Coding Challenge : Reading CSV file and parsing Unique , Max , Min.
 
+# Run it on repl.it
+<a href="https://repl.it/@RahulMistri/fyers-python-challenge-2#.replit"> Repl.it </a>
+
 # Question :
 Use Python to perform below <br />
 Open the file using python <br />
