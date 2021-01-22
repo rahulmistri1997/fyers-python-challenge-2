@@ -4,7 +4,6 @@ CSV Reader for getting All unique Airport.Names , Max visits and Min visits
 """
 # This code is 'PEP 8' Compliant and has been rated at 10.00/10 (Using pylint)
 
-import csv
 import json
 import sys
 import os
@@ -26,20 +25,24 @@ def csvopen(filename):
     unique_air = {} # Initializing a dict for storing the unique airport names
 
     with open(filename, mode='r') as csv_file:
-        csv_reader = csv.DictReader(csv_file)
+        # csv_reader = csv.DictReader(csv_file)
         line_count = 0
-        for row in csv_reader:
+        for row in csv_file:
+            words = row.split(",") # Splitting every line in the CSV
             if line_count == 0:
                 # left this here just to make the counter start from 0 and to add a count.
                 # Because the first rows are just names
                 # will be helpful if ever have to add CSV to DB using SQL.
                 line_count += 1
+                continue
 
+            airport_name = words[1]+","+words[2]
+            airport_name = airport_name.strip('"') # Removing extra quotes
             # Adding values in dictionary and if value is already present adding 1 to it.
-            if row["Airport.Name"] not in unique_air:
-                unique_air[row["Airport.Name"]] = 1
+            if airport_name not in unique_air:
+                unique_air[airport_name] = 1
             else:
-                unique_air[row["Airport.Name"]] += 1
+                unique_air[airport_name] += 1
 
             line_count += 1
 
@@ -75,7 +78,6 @@ def mincount(uniq_dict):
 
 # Checking if File exists or Not
 input_filename = input("File name: ")
-# file = resource_path('airlines.csv')
 file = resource_path(input_filename)
 
 if os.path.exists(file) and file.endswith('.csv'):
